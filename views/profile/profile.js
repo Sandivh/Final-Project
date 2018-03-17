@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
-import ProfileScreen from '../profile/profile';
 
-export default class HomeScreen extends React.Component {
+export default class ProfileScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Profile',    
   }
   render() {
     return (
@@ -19,7 +18,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.container}>
             <Text style={styles.heading}>Wine Cellar</Text>
             <View style={styles.buttonBox}>
-              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{this.props.navigation.navigate('Profile')}} title="Profile"/>
+              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{}} title="Profile"/>
               <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{}} title="Wine Cellar"/>
               <Button style={{ flex: 1,}} onPress={()=>{}} title="Add Wine"/>
             </View>
@@ -45,6 +44,6 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'rgba(0,0,0,.5)',
     alignItems: 'center',
-    paddingTop: 30,
+    paddingTop: 50,
   },
 });
