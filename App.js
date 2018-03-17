@@ -14,6 +14,7 @@ const AppNavigation = StackNavigator(
       screen: ProfileScreen
     },
   },
+  
   {
     initialRouteName: 'Home',
     
