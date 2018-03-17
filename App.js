@@ -11,10 +11,14 @@ export default class App extends React.Component {
             width: '100%', 
             height: '100%', 
             alignItems: 'center', 
-            justifyContent: 'center',
           }}>
           <View style={styles.container}>
             <Text style={styles.heading}>Wine Cellar</Text>
+            <View style={styles.buttonBox}>
+              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{}} title="Profile"/>
+              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{}} title="Wine Cellar"/>
+              <Button style={{ flex: 1,}} onPress={()=>{}} title="Add Wine"/>
+            </View>
           </View>
         </ImageBackground>
       </View>
@@ -27,10 +31,16 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#ffffff',
   },
-  
+  buttonBox:{
+    width: '75%',
+    paddingBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   container: {
+    width: '100%',
     backgroundColor: 'rgba(0,0,0,.5)',
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 50,
   },
 });
