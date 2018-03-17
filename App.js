@@ -1,23 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Text>What is this stuff right here!!!</Text>
+      <View>
+        <ImageBackground 
+          source={require('./images/wineBackground.jpg')} 
+          style={{
+            width: '100%', 
+            height: '100%', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+          }}>
+          <View style={styles.container}>
+            <Text style={styles.heading}>Wine Cellar</Text>
+          </View>
+        </ImageBackground>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  heading:{
+    fontSize: 40,
+    color: '#ffffff',
+  },
+  
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(0,0,0,.5)',
     alignItems: 'center',
     justifyContent: 'center',
   },
