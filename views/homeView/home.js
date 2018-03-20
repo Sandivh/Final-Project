@@ -1,11 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
 import ProfileScreen from '../profile/profile';
+import AddScreen from '../addWine/add';
+import CellarScreen from '../wineCellar/cellar';
+import Header from '../../shared/header/header';
+import Nav from '../../shared/nav/nav';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   }
+
   render() {
     return (
       <View>
@@ -17,34 +22,31 @@ export default class HomeScreen extends React.Component {
             alignItems: 'center', 
           }}>
           <View style={styles.container}>
-            <Text style={styles.heading}>Wine Cellar</Text>
-            <View style={styles.buttonBox}>
-              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{this.props.navigation.navigate('Profile')}} title="Profile"/>
-              <Button style={{marginRight: 10, flex: 1,}} onPress={()=>{}} title="Wine Cellar"/>
-              <Button style={{ flex: 1,}} onPress={()=>{}} title="Add Wine"/>
-            </View>
+            <Header navigation={this.props.navigation} />
+            <Nav navigation={this.props.navigation} />
+          </View>
+          <View style={styles.body}>
+            <Text></Text>
           </View>
         </ImageBackground>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  heading:{
-    fontSize: 40,
-    color: '#ffffff',
-  },
-  buttonBox:{
-    width: '75%',
-    paddingBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   container: {
     width: '100%',
     backgroundColor: 'rgba(0,0,0,.5)',
     alignItems: 'center',
-    paddingTop: 30,
+    paddingTop: 20,
   },
+  body: {
+    width: '90%',
+    height: '50%',
+    backgroundColor: 'rgba(0,0,0,.5)',
+    alignItems: 'center',
+    marginTop: 20,
+    justifyContent: 'flex-start',
+  }
 });

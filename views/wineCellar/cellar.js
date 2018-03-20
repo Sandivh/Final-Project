@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
+import ProfileScreen from '../profile/profile';
 import AddScreen from '../addWine/add';
-import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 
-export default class ProfileScreen extends React.Component {
+export default class CellarScreen extends React.Component {
   static navigationOptions = {
-    title: 'Profile',
+    title: 'Cellar',
   }
   render() {
     return (
