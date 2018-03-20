@@ -6,7 +6,6 @@ import ProfileScreen from './views/profile/profile';
 import AddScreen from './views/addWine/add'; 
 import CellarScreen from './views/wineCellar/cellar';
 
-
 const AppNavigation = StackNavigator(
   {
     Home: {
