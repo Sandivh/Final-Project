@@ -5,6 +5,7 @@ import AddScreen from '../addWine/add';
 import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import Table from '../../shared/tables/table';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -26,7 +27,7 @@ export default class HomeScreen extends React.Component {
             <Nav navigation={this.props.navigation} />
           </View>
           <View style={styles.body}>
-            <Text></Text>
+            <Table />
           </View>
         </ImageBackground>
       </View>
