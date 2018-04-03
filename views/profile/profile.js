@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
+import { Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
 import AddScreen from '../addWine/add';
 import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import styles from '../../shared/css/appStyles';
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -28,18 +29,3 @@ export default class ProfileScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  buttonBox:{
-    width: '75%',
-    paddingBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  container: {
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-});

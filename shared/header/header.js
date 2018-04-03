@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight} from 'react-native';
+import { Text, TouchableHighlight} from 'react-native';
+import styles from '../../shared/css/appStyles';
 
 export default class Header extends React.Component {
     render(){
@@ -10,11 +11,3 @@ export default class Header extends React.Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    heading:{
-      fontSize: 40,
-      color: '#ffffff',
-      marginBottom: 10,
-    },
-})

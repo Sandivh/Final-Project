@@ -6,6 +6,7 @@ import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import Table from '../../shared/tables/table';
+import styles from '../../shared/css/appStyles';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -27,27 +28,13 @@ export default class HomeScreen extends React.Component {
             <Nav navigation={this.props.navigation} />
           </View>
           <View style={styles.body}>
+            <Text style={styles.subHeading}>The Top Shelf</Text>
+            
             <Table />
+            
           </View>
         </ImageBackground>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-  body: {
-    width: '90%',
-    height: '50%',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    alignItems: 'center',
-    marginTop: 20,
-    justifyContent: 'flex-start',
-  }
-});

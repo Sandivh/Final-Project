@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Text, View, Button } from 'react-native';
+import styles from '../../shared/css/appStyles';
+import  staticData from '../testJson/staticJson.json';
 
 /* Edit these are the cells.
 You may even take parameters to display different data / react elements etc. */
@@ -23,7 +25,7 @@ export default class Table extends React.Component {
         );
     }
     render() {
-        const data = [1, 2, 3, 4, 5];
+        const data = [1, 2, 3, 4];
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
             {

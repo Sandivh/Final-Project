@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
+import { Text, ScrollView, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
 import ProfileScreen from '../profile/profile';
 import AddScreen from '../addWine/add';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import Table from '../../shared/tables/table';
+import styles from '../../shared/css/appStyles';
 
 export default class CellarScreen extends React.Component {
   static navigationOptions = {
@@ -23,23 +25,14 @@ export default class CellarScreen extends React.Component {
             <Header  navigation={this.props.navigation}/>
             <Nav navigation={this.props.navigation} />
           </View>
+          <View style={styles.body}>
+            <Text style={styles.subHeading}>The Cellar</Text>
+            <ScrollView style={styles.tableBody}>
+              <Table />
+            </ScrollView>
+          </View>
         </ImageBackground>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  buttonBox:{
-    width: '75%',
-    paddingBottom: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  container: {
-    width: '100%',
-    backgroundColor: 'rgba(0,0,0,.5)',
-    alignItems: 'center',
-    paddingTop: 20,
-  },
-});
