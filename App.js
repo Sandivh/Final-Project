@@ -1,23 +1,49 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
+import { StackNavigator} from 'react-navigation';
+import HomeScreen from './views/homeView/home';
+import ProfileScreen from './views/profile/profile';
+import AddScreen from './views/addWine/add'; 
+import CellarScreen from './views/wineCellar/cellar';
+
+const AppNavigation = StackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    },
+    Profile: {
+      screen: ProfileScreen
+    },
+    Add: {
+      screen: AddScreen
+    },
+    Cellar: {
+      screen: CellarScreen
+    }
+  },
+  
+  {
+    initialRouteName: 'Home',
+    
+    navigationOptions: {
+
+      headerStyle: {
+        backgroundColor: 'black',
+      },
+
+      headerTintColor: 'white',
+
+      headerTitleStyle: {
+        color: '#fff',
+      },
+    }
+  },
+)
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <AppNavigation/>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
