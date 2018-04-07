@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, ScrollView, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
-import ProfileScreen from '../profile/profile';
-import AddScreen from '../addWine/add';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import Table from '../../shared/tables/table';
@@ -28,7 +26,7 @@ export default class CellarScreen extends React.Component {
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Cellar</Text>
             <ScrollView style={styles.tableBody}>
-              <Table />
+              <Table wines={[]} />
             </ScrollView>
           </View>
         </ImageBackground>

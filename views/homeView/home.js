@@ -1,17 +1,65 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
-import ProfileScreen from '../profile/profile';
-import AddScreen from '../addWine/add';
-import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
+// import wineData only for mock calls/views
+import wineData from '../../shared/dataModel/wines';
+// import { wineDataCall, setLocalData, getLocalData } from '../../shared/dataModel/wines';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        wines: []
+    };
+}
+
+componentWillMount() {
+
+  // to call for fetch
+  //wineDataCall();
+
+  // set local data
+  // setLocalData();
+
+  // get local data
+  // const localWines = getLocalData();
+
+    this.setState({
+        wines: wineData.wines
+    });
+}
+
+sortWinesAlphabetical() {
+  wines = this.state.wines;
+
+  const sortingArray = [];
+
+  // do sorting logic here
+  wines.map((item, index) => {
+    sortingArray.push(item);
+  });
+
+  const sortedArray = wines.map((item, index) => {
+    if (sortingArray[index].rating > item.rating) {
+      // shift item left in array or someting like that.
+
+      // return something
+    }
+  })
+
+  this.setState({
+    wines: sortedArray
+  })
+}
 
   render() {
     return (
@@ -30,7 +78,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Top Shelf</Text>
             
-            <Table />
+            <Table wines={this.state.wines}/>
             
           </View>
         </ImageBackground>

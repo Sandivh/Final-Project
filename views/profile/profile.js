@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {Modal, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
-import AddScreen from '../addWine/add';
-import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';

@@ -1,9 +1,6 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import styles from '../../shared/css/appStyles';
-import staticJson from '../testJson/staticJson.json';
-
-
 
 /* These are the cells.
 You may even take parameters to display different data / react elements etc. */
@@ -13,16 +10,8 @@ export default class Table extends React.Component {
         super(props);
 
         this.state = {
-            wines: []
+            wines: this.props.wines
         };
-    }
-
-    componentWillMount() {
-        const data = staticJson;
-
-        this.setState({
-            wines: data.wines
-        });
     }
 
     renderRow = (wine ,index) => {

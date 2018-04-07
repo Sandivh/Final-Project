@@ -3,12 +3,12 @@
         {
             "name":"Duckhorn", 
             "type":"Merlot", 
-            "rating":"8.5" 
+            "rating": 8.5 
         },
         {
             "name":"Apothic Red", 
             "type":"Pinot", 
-            "rating":"9.25" 
+            "rating": 9.25 
         }
     ]
 }
