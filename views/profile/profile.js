@@ -1,10 +1,11 @@
-import React from 'react';
-import { Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
+import React, {Component} from 'react';
+import {Modal, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
 import AddScreen from '../addWine/add';
 import CellarScreen from '../wineCellar/cellar';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';
+import ModalExample from '../../shared/modals/modal';
 
 export default class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -24,6 +25,7 @@ export default class ProfileScreen extends React.Component {
             <Header  navigation={this.props.navigation}/>
             <Nav navigation={this.props.navigation} />
           </View>
+          <ModalExample />
         </ImageBackground>
       </View>
     );
