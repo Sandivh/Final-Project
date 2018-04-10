@@ -3,6 +3,7 @@ import { Text,  TouchableHighlight, View, ImageBackground, Button } from 'react-
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';
+import AddForm from '../../shared/forms/addForm';
 
 export default class AddScreen extends React.Component {
   static navigationOptions = {
@@ -21,6 +22,12 @@ export default class AddScreen extends React.Component {
           <View style={styles.container}>
             <Header  navigation={this.props.navigation}/>
             <Nav navigation={this.props.navigation} />
+          </View>
+          <View style={styles.body}>
+            <Text style={styles.subHeading}>Add Wine</Text>
+            
+            <AddForm />
+            
           </View>
         </ImageBackground>
       </View>
