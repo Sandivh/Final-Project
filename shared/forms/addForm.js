@@ -79,7 +79,7 @@ export default class AddForm extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.formContainer}>
         <ScrollView>
           <Form ref={c => this._form = c } type={wineToAdd} options={options}/>
           <Button
@@ -91,13 +91,3 @@ export default class AddForm extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    justifyContent: 'center',
-    marginTop: 20,
-    marginBottom: 50,
-    padding: 20,
-  },
-});

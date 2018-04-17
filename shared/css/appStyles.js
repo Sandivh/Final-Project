@@ -25,6 +25,13 @@ module.exports = StyleSheet.create({
         marginTop: 20,
         justifyContent: 'flex-start',
     },
+    formContainer: {
+        width: '100%',
+        justifyContent: 'center',
+        marginTop: 20,
+        marginBottom: 50,
+        padding: 20,
+    },
     tableBody: {
         width: '90%',
         height: '50%',

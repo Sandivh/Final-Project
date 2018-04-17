@@ -22,13 +22,13 @@ export default class ModalExample extends React.Component {
           }}>
           <View style={{marginTop: 22}}>
             <View>
-              <Text>Hello World!</Text>
+              
 
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-                <Text>Hide Modal</Text>
+                <Text>Back</Text>
               </TouchableHighlight>
             </View>
           </View>

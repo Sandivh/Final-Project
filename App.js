@@ -5,6 +5,7 @@ import HomeScreen from './views/homeView/home';
 import ProfileScreen from './views/profile/profile';
 import AddScreen from './views/addWine/add'; 
 import CellarScreen from './views/wineCellar/cellar';
+import LoginScreen from './views/login/login';
 
 const AppNavigation = StackNavigator(
   {
@@ -19,11 +20,14 @@ const AppNavigation = StackNavigator(
     },
     Cellar: {
       screen: CellarScreen
+    },
+    Login: {
+      screen: LoginScreen
     }
   },
   
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
     
     navigationOptions: {
 
