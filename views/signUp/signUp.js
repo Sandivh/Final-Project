@@ -1,13 +1,14 @@
 import React from 'react';
-import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, View, ImageBackground, Button } from 'react-native';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
 
-const loginInfo = t.struct({
+const signUpInfo = t.struct({
     userName: t.String,
+    email: t.String,
     password: t.String,
   });
 
@@ -62,26 +63,29 @@ const formStyles = {
   const options = {
     fields: {
       userName: {
-        error: 'Please enter your user name.'
+        error: 'Please enter your desired user name.'
+      },
+      email:{
+          error: 'Please enter your Email.'
       },
       password: {
-        error: 'Please enter your password.'
+        error: 'Please enter your a vaild password.'
       },
     },
     stylesheet: formStyles,
   };
 
 
-export default class LoginScreen extends React.Component {
+export default class SignUpScreen extends React.Component {
     static navigationOptions = {
-      title: 'Login',
+      title: 'Sign Up',
     }
     loginCheck = () => {
         const value = this._form.getValue();
         console.log('value: ', value);
         if(value !== null)
         {
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Login')
         }
       }
 
@@ -97,18 +101,17 @@ export default class LoginScreen extends React.Component {
               alignItems: 'center', 
             }}>
                 <View style={styles.container}>
-                <Text style={styles.heading}>Login</Text>
+                <Text style={styles.heading}>Sign Up</Text>
                 </View>
                 <View style={styles.body}>
                     <View style={styles.formContainer}>
-                        <Form ref={c => this._form = c } type={loginInfo} options={options}/>
-                        <TouchableOpacity style={styles.formButton} onPress = {this.loginCheck}>
-                          <Text>Login</Text>
-                        </TouchableOpacity>
-                        
-                        <TouchableOpacity style={styles.formButton} onPress = {()=>{this.props.navigation.navigate('SignUp')}}>
-                          <Text>Sign Up</Text>
-                        </TouchableOpacity>
+                    <ScrollView>
+                        <Form ref={c => this._form = c } type={signUpInfo} options={options}/>
+                        <Button
+                        title="Sign Up"
+                        onPress = {this.loginCheck}
+                        />
+                    </ScrollView>
                     </View>
                 </View>
           </ImageBackground>

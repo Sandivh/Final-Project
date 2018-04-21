@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Button } from 'react-native';
+import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
@@ -39,6 +40,10 @@ const formStyles = {
         borderColor: 'white',
         color: 'white',
       },
+      error:{
+        borderColor: 'red',
+        color: 'white'
+      }
     },
   textboxView:
   {
@@ -75,6 +80,10 @@ export default class AddForm extends Component {
   wineSubmit = () => {
     const value = this._form.getValue();
     console.log('value: ', value);
+    this.resetForm();
+  }
+  resetForm() {
+    this.setState({value: null});
   }
 
   render() {

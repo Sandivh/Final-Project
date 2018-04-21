@@ -19,7 +19,7 @@ module.exports = StyleSheet.create({
     },
     body: {
         width: '90%',
-        height: '50%',
+        height: '70%',
         backgroundColor: 'rgba(0,0,0,.8)',
         alignItems: 'center',
         marginTop: 20,
@@ -27,6 +27,7 @@ module.exports = StyleSheet.create({
     },
     formContainer: {
         width: '100%',
+        height: '90%',
         justifyContent: 'center',
         marginTop: 20,
         marginBottom: 50,
@@ -38,5 +39,11 @@ module.exports = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,.8)',
         marginTop: 20,
 
+    },
+    formButton:{
+        alignItems: 'center',
+        backgroundColor: '#DDDDDD',
+        padding: 10,
+        marginBottom: 10,
     }
 })

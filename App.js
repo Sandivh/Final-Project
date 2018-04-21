@@ -6,6 +6,7 @@ import ProfileScreen from './views/profile/profile';
 import AddScreen from './views/addWine/add'; 
 import CellarScreen from './views/wineCellar/cellar';
 import LoginScreen from './views/login/login';
+import SignUpScreen from './views/signUp/signUp';
 
 const AppNavigation = StackNavigator(
   {
@@ -23,6 +24,9 @@ const AppNavigation = StackNavigator(
     },
     Login: {
       screen: LoginScreen
+    },
+    SignUp:{
+      screen: SignUpScreen
     }
   },
   
