@@ -42,8 +42,11 @@ module.exports = StyleSheet.create({
     },
     formButton:{
         alignItems: 'center',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: '#4da6ff',
         padding: 10,
         marginBottom: 10,
+    },
+    whiteText:{
+        color: 'white',
     }
 })

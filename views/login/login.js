@@ -103,11 +103,11 @@ export default class LoginScreen extends React.Component {
                     <View style={styles.formContainer}>
                         <Form ref={c => this._form = c } type={loginInfo} options={options}/>
                         <TouchableOpacity style={styles.formButton} onPress = {this.loginCheck}>
-                          <Text>Login</Text>
+                          <Text style={styles.whiteText}>Login</Text>
                         </TouchableOpacity>
                         
                         <TouchableOpacity style={styles.formButton} onPress = {()=>{this.props.navigation.navigate('SignUp')}}>
-                          <Text>Sign Up</Text>
+                          <Text style={styles.whiteText}>Sign Up</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
