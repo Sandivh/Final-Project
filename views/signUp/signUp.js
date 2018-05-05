@@ -80,6 +80,7 @@ export default class SignUpScreen extends React.Component {
     static navigationOptions = {
       title: 'Sign Up',
     }
+
     loginCheck = () => {
         const value = this._form.getValue();
         console.log('value: ', value);

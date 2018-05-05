@@ -1,5 +1,12 @@
 import React from 'react';
-import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
+import { 
+  Text, 
+  View, 
+  ImageBackground, 
+  TouchableOpacity, 
+  AsyncStorage 
+} from 'react-native';
+import Storage from 'react-native-storage';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
@@ -76,9 +83,23 @@ export default class LoginScreen extends React.Component {
     static navigationOptions = {
       title: 'Login',
     }
+
+    constructor(props) {
+      super(props);
+
+      const storage = new Storage({
+        storageBackend: AsyncStorage
+      });
+
+      global.storage = storage;
+    }
+
+    componentWillMount() {
+      storage.clearMap();
+    }
+  
     loginCheck = () => {
         const value = this._form.getValue();
-        console.log('value: ', value);
         var anObject = {
             "password": value.password,
             "username": value.userName
@@ -98,19 +119,24 @@ export default class LoginScreen extends React.Component {
             }
             return response.json();
         })
-        .then((result)=>{
-          try {
-            result.map((value, index) => {
-              Object.keys(value).map((key, position) => {
-                await AsyncStorage.setItem('@' + index + ':' + key, value.key);
-              });
-            });
+        .then( (result) => {
 
-            const wineId = await AsyncStorage.getItem('@0:wineId');
-            console.log( wineId );
-          } catch (error) {
-            console.log("set local storage error:", error);
-          }
+          // someImportedFile.functionName(result);
+
+          storage.save({
+            key: '10',
+            id: '101',
+            data: {
+              stuff: "stuff",
+              pal: "some name of some pal",
+              jake: "person who is going to be in trouble"
+            }
+          });
+
+          return result;
+        })
+        .then((result) => {
+          storage.getAllDataForKey('10').then( data => console.log(data) );
         })
         .catch(error => { console.log(error); })
         
