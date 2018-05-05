@@ -79,10 +79,41 @@ export default class LoginScreen extends React.Component {
     loginCheck = () => {
         const value = this._form.getValue();
         console.log('value: ', value);
-        if(value !== null)
-        {
-            this.props.navigation.navigate('Home')
+        var anObject = {
+            "password": value.password,
+            "username": value.userName
         }
+        /**Implementing fetch */
+        let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/userValidation.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( anObject )
+        })
+        .then((response) => {
+            if(!response.ok){
+              throw Error(response.statusText); 
+            }
+            return response.json();
+        })
+        .then((result)=>{
+          try {
+            result.map((value, index) => {
+              Object.keys(value).map((key, position) => {
+                await AsyncStorage.setItem('@' + index + ':' + key, value.key);
+              });
+            });
+
+            const wineId = await AsyncStorage.getItem('@0:wineId');
+            console.log( wineId );
+          } catch (error) {
+            console.log("set local storage error:", error);
+          }
+        })
+        .catch(error => { console.log(error); })
+        
       }
 
     
