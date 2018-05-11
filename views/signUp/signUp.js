@@ -8,7 +8,6 @@ const Form = t.form.Form;
 
 const signUpInfo = t.struct({
     userName: t.String,
-    email: t.String,
     password: t.String,
   });
 
@@ -65,11 +64,10 @@ const formStyles = {
       userName: {
         error: 'Please enter your desired user name.'
       },
-      email:{
-          error: 'Please enter your Email.'
-      },
       password: {
-        error: 'Please enter your a vaild password.'
+        error: 'Please enter your a vaild password.',
+        password: true,
+        secureTextEntry: true
       },
     },
     stylesheet: formStyles,
@@ -81,13 +79,25 @@ export default class SignUpScreen extends React.Component {
       title: 'Sign Up',
     }
 
-    loginCheck = () => {
-        const value = this._form.getValue();
-        console.log('value: ', value);
-        if(value !== null)
-        {
-            this.props.navigation.navigate('Login')
-        }
+    signupCheck = () => {
+      const value = this._form.getValue();
+      var  newUser= {
+          "password": value.password,
+          "username": value.userName
+      }
+      /**Implementing fetch */
+      let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/addUser.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify( newUser )
+      })
+      .then((response) => {
+          if(!response.ok){
+            throw Error(response.statusText); 
+          }
+      })
       }
 
     
@@ -110,7 +120,7 @@ export default class SignUpScreen extends React.Component {
                         <Form ref={c => this._form = c } type={signUpInfo} options={options}/>
                         <Button
                         title="Sign Up"
-                        onPress = {this.loginCheck}
+                        onPress = {this.signupCheck}
                         />
                     </ScrollView>
                     </View>

@@ -72,7 +72,9 @@ const formStyles = {
         error: 'Please enter your user name.'
       },
       password: {
-        error: 'Please enter your password.'
+        error: 'Please enter your password.',
+        password: true,
+        secureTextEntry: true
       },
     },
     stylesheet: formStyles,
@@ -117,27 +119,29 @@ export default class LoginScreen extends React.Component {
             if(!response.ok){
               throw Error(response.statusText); 
             }
+            
             return response.json();
         })
-        .then( (result) => {
-
-          // someImportedFile.functionName(result);
-
-          storage.save({
-            key: '10',
-            id: '101',
-            data: {
-              stuff: "stuff",
-              pal: "some name of some pal",
-              jake: "person who is going to be in trouble"
-            }
-          });
-
-          return result;
+         .then( async (result) => {
+          await console.log(result);
         })
-        .then((result) => {
-          storage.getAllDataForKey('10').then( data => console.log(data) );
-        })
+        //   // someImportedFile.functionName(result);
+
+        //   storage.save({
+        //     key: '10',
+        //     id: '101',
+        //     data: {
+        //       stuff: "stuff",
+        //       pal: "some name of some pal",
+        //       jake: "person who is going to be in trouble"
+        //     }
+        //   });
+
+        //   return result;
+        // })
+        // .then((result) => {
+        //   storage.getAllDataForKey('10').then( data => console.log(data) );
+        // })
         .catch(error => { console.log(error); })
         
       }

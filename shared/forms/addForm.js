@@ -8,8 +8,9 @@ const Form = t.form.Form;
 const wineToAdd = t.struct({
   wineName: t.String,
   wineType: t.String,
-  rating: t.Number,
-  description: t.maybe(t.String)
+  wineRating: t.Number,
+  wineDesc: t.maybe(t.String),
+  userId: t.Number
 });
 
 const formStyles = {
@@ -80,10 +81,35 @@ export default class AddForm extends Component {
   wineSubmit = () => {
     const value = this._form.getValue();
     console.log('value: ', value);
-    this.resetForm();
-  }
-  resetForm() {
-    this.setState({value: null});
+    var addObject = {
+      "winename":   value.password,
+      "winetype":   value.userName,
+      "winerating": value.wineRating,
+      "winedesc":   value.wineDesc,
+      "userid":     value.userId
+    }
+    
+    let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/add.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( addObject )
+    })
+    .then((response) => {
+        if(response.ok){
+           //add wine to global object.
+        }else{
+          throw Error(response.statusText);
+        }
+        
+        return response.json();
+    })
+     .then( async (result) => {
+      await console.log(result);
+    })
+
   }
 
   render() {
