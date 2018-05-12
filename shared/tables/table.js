@@ -18,13 +18,13 @@ export default class Table extends React.Component {
         return (
             <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', width: '100%' }} key={index}>
                 <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'red', marginVertical: '2%', marginLeft: '2%', padding: '2%', height: 50 }} key="1">    
-                    <Text style={{ color: 'white' }}>{wine.name}</Text>
+                    <Text style={{ color: 'white' }}>{wine.data.wineName}</Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'blue', marginVertical: '2%', padding: '2%', height: 50 }} key="2">
-                    <Text style={{ color: 'white' }}>{wine.type}</Text>
+                    <Text style={{ color: 'white' }}>{wine.data.wineType}</Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'green', marginVertical: '2%', marginRight: '2%', padding: '2%', height: 50 }} key="3">
-                    <Text style={{ color: 'white' }}>{wine.rating}</Text>
+                    <Text style={{ color: 'white' }}>{wine.data.wineRating}</Text>
                 </View>
             </View>
         );

@@ -4,10 +4,26 @@ import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
+import {getAllWineData} from '../../shared/dataModel/wines';
 
 export default class CellarScreen extends React.Component {
   static navigationOptions = {
     title: 'Cellar',
+  }
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      wines: null
+    }
+
+  }
+
+  componentWillMount(){
+    this.setState({
+      wines: getAllWineData()
+    })
   }
   render() {
     return (
@@ -26,7 +42,7 @@ export default class CellarScreen extends React.Component {
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Cellar</Text>
             <ScrollView style={styles.tableBody}>
-              <Table wines={[]} />
+              <Table wines={this.state.wines} />
             </ScrollView>
           </View>
         </ImageBackground>

@@ -118,30 +118,19 @@ export default class LoginScreen extends React.Component {
         .then((response) => {
             if(!response.ok){
               throw Error(response.statusText); 
+            }else{
+
             }
             
             return response.json();
         })
-         .then( async (result) => {
-          await console.log(result);
+         .then((result) => {
+          saveAllWineDataLocally(result);
         })
-        //   // someImportedFile.functionName(result);
-
-        //   storage.save({
-        //     key: '10',
-        //     id: '101',
-        //     data: {
-        //       stuff: "stuff",
-        //       pal: "some name of some pal",
-        //       jake: "person who is going to be in trouble"
-        //     }
-        //   });
-
-        //   return result;
-        // })
-        // .then((result) => {
-        //   storage.getAllDataForKey('10').then( data => console.log(data) );
-        // })
+        .then(() =>{
+          this.props.navigation.navigate('Home')
+        })
+        
         .catch(error => { console.log(error); })
         
       }

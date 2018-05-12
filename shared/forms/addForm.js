@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Button } from 'react-native';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
+import {saveSingleWineDataLocally} from '../dataModel/wines';
 
 const Form = t.form.Form;
 
@@ -78,12 +79,19 @@ const options = {
 
 export default class AddForm extends Component {
 
+  constructor (props){
+    super(props)
+    this.state = {
+      wineData: null
+    }
+  }
+
   wineSubmit = () => {
     const value = this._form.getValue();
     console.log('value: ', value);
     var addObject = {
-      "winename":   value.password,
-      "winetype":   value.userName,
+      "winename":   value.wineName,
+      "winetype":   value.wineType,
       "winerating": value.wineRating,
       "winedesc":   value.wineDesc,
       "userid":     value.userId
@@ -98,16 +106,21 @@ export default class AddForm extends Component {
       body: JSON.stringify( addObject )
     })
     .then((response) => {
-        if(response.ok){
-           //add wine to global object.
-        }else{
+        if(!response.ok){
           throw Error(response.statusText);
         }
         
         return response.json();
     })
-     .then( async (result) => {
-      await console.log(result);
+    //need to check the structure of the response to set the wineId
+    .then((result) => {
+      return wineData = {
+        ...addObject,
+        result
+      };
+    })
+     .then((result) => {
+       saveSingleWineDataLocally(result)
     })
 
   }

@@ -1,28 +1,45 @@
-import wineData from '../testJson/staticJson.json';
+// import React from 'react';
+import { AsyncStorage } from 'react-native';
+import Storage from 'react-native-storage';
 
-// fetch call to wine data
-/*
-const wineDataCall = fetch("full url to endpoint")
-    .then((response) => {
-        return response.json();
-    })
-*/
+export const saveAllWineDataLocally = ( data ) => {
+    // data is an array that needs to be looped over and each
+    // wine object needs its own unique key and ID.
+    const wineData = data.map( ( wine, index ) => {
+       return storage.save({
+            key: 'wine',
+            id: wine.wineId,
+            data: {
+                ...wine
+            }
+        });
+    });
 
-// set local storage
-/*
-const setLocalStorage = () => {
-    // data.wines is from the fetch result
-    setLocalStorage("wines", data.wines);
+    return wineData;
+};
+
+export const saveSingleWineDataLocally = (wineData) =>{
+    return storage.save({
+        key: 'wine',
+        id: wineData.wineId,
+        data: {
+            ...wineData
+        }
+    });
 }
-*/
 
-// export a function that grabs local storage
-/* 
-const getLocalStorage = () => {
-    getLocalStorage("wines");
-}
-*/
+// pass a specific wine based on the uniquie wineId.
+export const getSpecificWine = ( wineId ) => {
+    return storage.getSpecificWine(wineId);
+};
 
-// eventually export both wine data & local storage as variables
-// export { wineDataCall, setLocalStorage, getLocalStorage };
-export default wineData;
+// pass in an int of the number of wines, map over the entire list of
+// wines and then return the top (whatever) based on wine rating.
+export const getPartialWineData = ( numberOfWines ) => {
+
+};
+
+//gets all the wine.
+export const getAllWineData = () => {
+    return storage.getAllDataForKey('wine');
+};

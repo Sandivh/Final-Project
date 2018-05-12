@@ -79,14 +79,14 @@ export default class SignUpScreen extends React.Component {
       title: 'Sign Up',
     }
 
-    signupCheck = () => {
+    signUpCheck = () => {
       const value = this._form.getValue();
       var  newUser= {
           "password": value.password,
           "username": value.userName
       }
-      /**Implementing fetch */
-      let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/addUser.php', {
+      
+      let signUp = fetch('http://grevaneandsandivh.com/cellarBackEnd/addUser.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -98,8 +98,7 @@ export default class SignUpScreen extends React.Component {
             throw Error(response.statusText); 
           }
       })
-      }
-
+    }
     
     render() {
       return (
@@ -120,7 +119,7 @@ export default class SignUpScreen extends React.Component {
                         <Form ref={c => this._form = c } type={signUpInfo} options={options}/>
                         <Button
                         title="Sign Up"
-                        onPress = {this.signupCheck}
+                        onPress = {this.signUpCheck}
                         />
                     </ScrollView>
                     </View>
