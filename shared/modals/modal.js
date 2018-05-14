@@ -1,5 +1,7 @@
 import React from 'react';
-import {Modal, Text, TouchableHighlight, View} from 'react-native';
+import {Modal, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import styles from '../../shared/css/appStyles';
+import {getSpecificWine} from '../dataModel/wines';
 
 export default class ModalExample extends React.Component {
   state = {
@@ -18,15 +20,13 @@ export default class ModalExample extends React.Component {
           transparent={false}
           visible={this.state.modalVisible}
           onRequestClose={() => {}}>
-          <View style={{marginTop: 22}}>
-            <View>
-              
-
+          <View style={styles.container}>
+            <View style={styles.modalStyle}>
               <TouchableHighlight
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}>
-                <Text>Back</Text>
+                <Text style={styles.subHeading} >Close</Text>
               </TouchableHighlight>
             </View>
           </View>

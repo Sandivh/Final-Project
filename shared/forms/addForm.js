@@ -11,7 +11,6 @@ const wineToAdd = t.struct({
   wineType: t.String,
   wineRating: t.Number,
   wineDesc: t.maybe(t.String),
-  userId: t.Number
 });
 
 const formStyles = {
@@ -93,8 +92,8 @@ export default class AddForm extends Component {
       "winename":   value.wineName,
       "winetype":   value.wineType,
       "winerating": value.wineRating,
-      "winedesc":   value.wineDesc,
-      "userid":     value.userId
+      "winedesc":   value.wineDesc
+      //"userid":     value.userId
     }
     
     let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/add.php', {

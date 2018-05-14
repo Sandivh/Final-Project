@@ -10,6 +10,7 @@ import Storage from 'react-native-storage';
 import Nav from '../../shared/nav/nav';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
+import {saveAllWineDataLocally} from '../../shared/dataModel/wines';
 
 const Form = t.form.Form;
 
