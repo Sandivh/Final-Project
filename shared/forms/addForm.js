@@ -89,23 +89,23 @@ export default class AddForm extends Component {
     const value = this._form.getValue();
 
     const addObject = {
-        "winename":   value.wineName,
-        "winetype":   value.wineType,
-        "winerating": value.wineRating,
-        "winedesc":   value.wineDesc
+        "wineName":   value.wineName,
+        "wineType":   value.wineType,
+        "wineRating": value.wineRating,
+        "wineDesc":   value.wineDesc
       };
-
       const wineAndUserId = getUserId()
       .then((userId) => {
           return {
             ...addObject,
-            "userid":  userId[0].userId
+            "userId":  userId[0].userId
           };
       })
       .then((result) => {
         fetch('http://grevaneandsandivh.com/cellarBackEnd/add.php', {
           method: 'POST',
           headers: {
+            'Accept':'application/json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify( result )
@@ -115,13 +115,14 @@ export default class AddForm extends Component {
               throw Error(response.statusText);
             }
             //need to return json to get wine id and then save it to local
-            return response;
+            return response.json();
         })
         //need to check the structure of the response to set the wineId
         .then((result) => {
+          const newWineId = result
           return wineData = {
             ...addObject,
-            result
+            "wineId": newWineId.wineId
           };
         })
          .then((result) => {

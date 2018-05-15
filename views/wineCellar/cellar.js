@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, ScrollView, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import TableHeadings from '../../shared/tables/headers';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
 import {getAllWineData} from '../../shared/dataModel/wines';
@@ -50,6 +51,7 @@ componentWillMount() {
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Cellar</Text>
             <ScrollView style={styles.tableBody}>
+            <TableHeadings />
               <Table wines={this.state.wines} />
             </ScrollView>
           </View>

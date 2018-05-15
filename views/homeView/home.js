@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button,ScrollView } from 'react-native';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import TableHeadings from '../../shared/tables/headers';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
 import { getAllWineData } from '../../shared/dataModel/wines';
@@ -51,9 +52,10 @@ componentWillMount() {
           </View>
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Top Shelf</Text>
-            
-            <Table wines={this.state.wines}/>
-            
+            <ScrollView style={styles.tableBody}>
+            <TableHeadings />
+              <Table wines={this.state.wines}/>
+            </ScrollView>
           </View>
         </ImageBackground>
       </View>
