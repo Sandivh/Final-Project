@@ -4,9 +4,7 @@ import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
-// import wineData only for mock calls/views
-import wineData from '../../shared/dataModel/wines';
-// import { wineDataCall, setLocalData, getLocalData } from '../../shared/dataModel/wines';
+import { getAllWineData } from '../../shared/dataModel/wines';
 
 
 export default class HomeScreen extends React.Component {
@@ -24,44 +22,20 @@ export default class HomeScreen extends React.Component {
 
 componentWillMount() {
 
-  // to call for fetch
-  //wineDataCall();
-
-  // set local data
-  // setLocalData();
-
-  // get local data
-  // const localWines = getLocalData();
-
-    this.setState({
-        wines: wineData.wines
-    });
-}
-
-sortWinesAlphabetical() {
-  wines = this.state.wines;
-
-  const sortingArray = [];
-
-  // do sorting logic here
-  wines.map((item, index) => {
-    sortingArray.push(item);
-  });
-
-  const sortedArray = wines.map((item, index) => {
-    if (sortingArray[index].rating > item.rating) {
-      // shift item left in array or someting like that.
-
-      // return something
+  getAllWineData()
+  .then((wineData) => {
+    if(wineData.length > 0){  
+      this.setState({
+          wines: wineData
+      });
+    }else{
+      this.props.navigation.navigate('Add');
     }
-  })
-
-  this.setState({
-    wines: sortedArray
-  })
+  });
 }
 
   render() {
+    if(this.state.wines && this.state.wines.length){
     return (
       <View>
         <ImageBackground 
@@ -84,5 +58,8 @@ sortWinesAlphabetical() {
         </ImageBackground>
       </View>
     )
+  }else{
+    return null;
+  }
   }
 }

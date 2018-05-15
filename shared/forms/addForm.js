@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Button } from 'react-native';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
-import {saveSingleWineDataLocally} from '../dataModel/wines';
+import {saveSingleWineDataLocally, getUserId} from '../dataModel/wines';
 
 const Form = t.form.Form;
 
@@ -87,40 +87,49 @@ export default class AddForm extends Component {
 
   wineSubmit = () => {
     const value = this._form.getValue();
-    console.log('value: ', value);
-    var addObject = {
-      "winename":   value.wineName,
-      "winetype":   value.wineType,
-      "winerating": value.wineRating,
-      "winedesc":   value.wineDesc
-      //"userid":     value.userId
-    }
-    
-    let outputToo = fetch('http://grevaneandsandivh.com/cellarBackEnd/add.php', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify( addObject )
-    })
-    .then((response) => {
-        if(!response.ok){
-          throw Error(response.statusText);
-        }
-        
-        return response.json();
-    })
-    //need to check the structure of the response to set the wineId
-    .then((result) => {
-      return wineData = {
-        ...addObject,
-        result
+
+    const addObject = {
+        "winename":   value.wineName,
+        "winetype":   value.wineType,
+        "winerating": value.wineRating,
+        "winedesc":   value.wineDesc
       };
-    })
-     .then((result) => {
-       saveSingleWineDataLocally(result)
-    })
+
+      const wineAndUserId = getUserId()
+      .then((userId) => {
+          return {
+            ...addObject,
+            "userid":  userId[0].userId
+          };
+      })
+      .then((result) => {
+        fetch('http://grevaneandsandivh.com/cellarBackEnd/add.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( result )
+        })
+        .then((response) => {
+            if(!response.ok){
+              throw Error(response.statusText);
+            }
+            //need to return json to get wine id and then save it to local
+            return response;
+        })
+        //need to check the structure of the response to set the wineId
+        .then((result) => {
+          return wineData = {
+            ...addObject,
+            result
+          };
+        })
+         .then((result) => {
+           saveSingleWineDataLocally(result)
+        })
+        .catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
 
   }
 

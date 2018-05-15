@@ -98,6 +98,10 @@ export default class SignUpScreen extends React.Component {
             throw Error(response.statusText); 
           }
       })
+      .then(() =>{
+        this.props.navigation.navigate('Login')
+      })
+      .catch(error => { console.log(error); })
     }
     
     render() {

@@ -11,21 +11,29 @@ export default class CellarScreen extends React.Component {
     title: 'Cellar',
   }
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      wines: null
+        wines: []
+    };
+}
+
+componentWillMount() {
+
+  getAllWineData()
+  .then((wineData) => {
+    if(wineData.length > 0){  
+      this.setState({
+          wines: wineData
+      });
+    }else{
+      this.props.navigation.navigate('Add');
     }
-
-  }
-
-  componentWillMount(){
-    this.setState({
-      wines: getAllWineData()
-    })
-  }
+  });
+}
   render() {
+    if(this.state.wines && this.state.wines.length){
     return (
       <View>
         <ImageBackground 
@@ -48,5 +56,8 @@ export default class CellarScreen extends React.Component {
         </ImageBackground>
       </View>
     );
+  }else{
+    return null;
+  }
   }
 }

@@ -6,9 +6,9 @@ export const saveAllWineDataLocally = ( data ) => {
     // data is an array that needs to be looped over and each
     // wine object needs its own unique key and ID.
     const wineData = data.map( ( wine, index ) => {
-       return storage.save({
-            key: 'wine',
-            id: wine.wineId,
+        return storage.save({
+            key: wine.userId ? 'userId' : 'wine',
+            id: wine.userId ? 'userId' : wine.wineId,
             data: {
                 ...wine
             }
@@ -17,6 +17,10 @@ export const saveAllWineDataLocally = ( data ) => {
 
     return wineData;
 };
+
+export const getUserId = () => {
+    return storage.getAllDataForKey('userId')
+}
 
 export const saveSingleWineDataLocally = (wineData) =>{
     return storage.save({
@@ -41,5 +45,5 @@ export const getPartialWineData = ( numberOfWines ) => {
 
 //gets all the wine.
 export const getAllWineData = () => {
-    return storage.getAllDataForKey('wine');
+    return storage.getAllDataForKey('wine')
 };

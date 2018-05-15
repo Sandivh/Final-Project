@@ -119,17 +119,19 @@ export default class LoginScreen extends React.Component {
         .then((response) => {
             if(!response.ok){
               throw Error(response.statusText); 
-            }else{
-
             }
             
             return response.json();
         })
          .then((result) => {
-          saveAllWineDataLocally(result);
+          return saveAllWineDataLocally(result);
         })
-        .then(() =>{
-          this.props.navigation.navigate('Home')
+        .then((result) =>{
+          if(result.length > 1){
+            this.props.navigation.navigate('Home')
+          }else{
+            this.props.navigation.navigate('Add')
+          }
         })
         
         .catch(error => { console.log(error); })

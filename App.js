@@ -32,7 +32,7 @@ const AppNavigation = StackNavigator(
   },
   
   {
-    initialRouteName: 'Add',
+    initialRouteName: 'Login',
     
     navigationOptions: {
 
