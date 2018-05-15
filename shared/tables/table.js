@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, Button, TouchableOpacity } from 'react-native';
+import { Text, View, Button, TouchableOpacity, Alert } from 'react-native';
 import styles from '../../shared/css/appStyles';
+import {deleteWine} from '../deleteData/deleteWine';
 
 /* These are the cells.
 You may even take parameters to display different data / react elements etc. */
@@ -11,6 +12,7 @@ export default class Table extends React.Component {
 
         this.state = {
             wines: this.props.wines
+            
         };
     }
 
@@ -21,6 +23,8 @@ export default class Table extends React.Component {
             wines: this.state.wines
         });
     }
+
+// {Alert.alert("Confrim Deletion","Are you sure you want to delete ?",[{text: "Cancel", onPress: () => console.log('Cancel Pressed'), style: "cancel" },{text: "Confirm", onPress: () => {() => {deleteWine(wine.wineId)}}}],{cancelable:true})}
 
     renderRow = (wine ,index) => {
         return (
@@ -35,7 +39,7 @@ export default class Table extends React.Component {
                     <Text style={{ color: 'white' }}>{wine.wineRating}</Text>
                 </View>
                 <View style={{ flex: 1, alignSelf: 'stretch', marginVertical: '2%', marginRight: '2%', padding: '2%', height: 50 }} key="4">
-                        <TouchableOpacity style={styles.deleteButton} onPress = {()=>{this.props.navigation.navigate('')}}>
+                        <TouchableOpacity style={styles.deleteButton} onPress = {() => {Alert.alert("Confrim Deletion","Are you sure you want to delete ?",[{text: "Cancel", onPress: () => console.log('Cancel Pressed'), style: "cancel" },{text: "Confirm", onPress: () => {deleteWine(wine.wineId)}}],{cancelable:true})}}>
                           <Text style={styles.whiteText}>Delete</Text>
                         </TouchableOpacity>
                 </View>

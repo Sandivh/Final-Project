@@ -47,3 +47,10 @@ export const getPartialWineData = ( numberOfWines ) => {
 export const getAllWineData = () => {
     return storage.getAllDataForKey('wine')
 };
+
+//removes a wine
+export const removeWineData = (toDelete) => {
+    return storage.remove({
+        key: toDelete.wineId
+    })
+}
