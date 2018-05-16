@@ -50,7 +50,9 @@ export const getAllWineData = () => {
 
 //removes a wine
 export const removeWineData = (toDelete) => {
+    console.log(toDelete);
     return storage.remove({
-        key: toDelete.wineId
-    })
-}
+        key: toDelete.wineId,
+        id: toDelete.wineId
+    });
+};
