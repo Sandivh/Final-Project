@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, StyleSheet, ScrollView, Button, Alert } from 'react-native';
 import styles from '../../shared/css/appStyles';
 import t from 'tcomb-form-native';
 import {saveSingleWineDataLocally, getUserId} from '../dataModel/wines';
@@ -127,6 +127,9 @@ export default class AddForm extends Component {
         })
          .then((result) => {
            saveSingleWineDataLocally(result)
+        })
+        .then(() => {
+          Alert.alert("Add Confrimed","Your wine has been added",[{text: "Okay", onPress: () => console.log('Okay Pressed'), style: "cancel" }])
         })
         .catch(error => console.log(error));
       })

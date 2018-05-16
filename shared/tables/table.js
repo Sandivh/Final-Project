@@ -24,7 +24,6 @@ export default class Table extends React.Component {
         });
     }
 
-// {Alert.alert("Confrim Deletion","Are you sure you want to delete ?",[{text: "Cancel", onPress: () => console.log('Cancel Pressed'), style: "cancel" },{text: "Confirm", onPress: () => {() => {deleteWine(wine.wineId)}}}],{cancelable:true})}
 
     renderRow = (wine ,index) => {
         return (

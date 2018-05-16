@@ -1,5 +1,6 @@
 import React from 'react';
-import {removeWineData} from '../dataModel/wines';
+import { Alert } from 'react-native';
+import {removeWineData, getAllWineData} from '../dataModel/wines';
 
 
 export const deleteWine = ( wineId ) => {
@@ -19,15 +20,26 @@ export const deleteWine = ( wineId ) => {
       if(!response.ok){
         throw Error(response.statusText);
       }
-      //need to return json to get wine id and then save it to local
       return response;
   })
-  //need to check the structure of the response to set the wineId
   .then(() => {
     removeWineData(toDelete)
   })
+  .then(() => {
+    {Alert.alert("Deletion Success","Wine has successfully been deleted?",[{text: "Okay", onPress: () => console.log('Okay Pressed'), style: "cancel" }])}
+  })
+  //Getting the local data set to update the state
   .then(()=> {
-    this.props.navigation.navigate('Cellar')
+    getAllWineData()
+    .then((wineData) => {
+      console.log(wineData)
+      if(wineData.length > 0){
+        this.state = wineData
+      }else{
+        this.props.navigation.navigate('Add');
+      }
+    });
+    
   })
   .catch(error => console.log(error));
 }
