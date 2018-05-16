@@ -1,19 +1,42 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
-import ProfileScreen from '../profile/profile';
-import AddScreen from '../addWine/add';
-import CellarScreen from '../wineCellar/cellar';
+import { StyleSheet, Text, TouchableHighlight, View, ImageBackground, Button,ScrollView } from 'react-native';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import TableHeadings from '../../shared/tables/headers';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
+import { getAllWineData } from '../../shared/dataModel/wines';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        wines: []
+    };
+}
+
+componentWillMount() {
+
+  getAllWineData()
+  .then((wineData) => {
+    if(wineData.length > 0){  
+      this.setState({
+          wines: wineData
+      });
+    }else{
+      this.props.navigation.navigate('Add');
+    }
+  });
+}
+
   render() {
+    if(this.state.wines && this.state.wines.length){
     return (
       <View>
         <ImageBackground 
@@ -29,12 +52,16 @@ export default class HomeScreen extends React.Component {
           </View>
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Top Shelf</Text>
-            
-            <Table />
-            
+            <ScrollView style={styles.tableBody}>
+            <TableHeadings />
+              <Table wines={this.state.wines}/>
+            </ScrollView>
           </View>
         </ImageBackground>
       </View>
     )
+  }else{
+    return null;
+  }
   }
 }

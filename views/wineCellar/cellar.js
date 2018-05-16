@@ -1,17 +1,40 @@
 import React from 'react';
 import { Text, ScrollView, TouchableHighlight, View, ImageBackground, Button } from 'react-native';
-import ProfileScreen from '../profile/profile';
-import AddScreen from '../addWine/add';
 import Header from '../../shared/header/header';
 import Nav from '../../shared/nav/nav';
+import TableHeadings from '../../shared/tables/headers';
 import Table from '../../shared/tables/table';
 import styles from '../../shared/css/appStyles';
+import {getAllWineData} from '../../shared/dataModel/wines';
 
 export default class CellarScreen extends React.Component {
   static navigationOptions = {
     title: 'Cellar',
   }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        wines: []
+    };
+}
+
+componentWillMount() {
+
+  getAllWineData()
+  .then((wineData) => {
+    if(wineData.length > 0){  
+      this.setState({
+          wines: wineData
+      });
+    }else{
+      this.props.navigation.navigate('Add');
+    }
+  });
+}
   render() {
+    if(this.state.wines && this.state.wines.length){
     return (
       <View>
         <ImageBackground 
@@ -28,11 +51,15 @@ export default class CellarScreen extends React.Component {
           <View style={styles.body}>
             <Text style={styles.subHeading}>The Cellar</Text>
             <ScrollView style={styles.tableBody}>
-              <Table />
+            <TableHeadings />
+              <Table wines={this.state.wines} />
             </ScrollView>
           </View>
         </ImageBackground>
       </View>
     );
+  }else{
+    return null;
+  }
   }
 }
